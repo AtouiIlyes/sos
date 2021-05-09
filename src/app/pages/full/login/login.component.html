@@ -1,0 +1,90 @@
+<div class="app-header">
+  <!--<h1 class="app-heading">{{title}}</h1>-->
+</div>
+
+<mat-grid-list cols="3" class="bg-login">
+  <div class="login-container">
+    <div class="login-box-header">
+      <img src="assets/img/logo/sos.svg" class="position-logo" />
+    </div>
+    <form novalidate="" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="login-box-body">
+        <!-- LOGIN -->
+        <mat-grid-list cols="9" rowHeight="55px">
+          <mat-grid-tile [colspan]="9">
+            <mat-icon>lock</mat-icon>
+            <dx-text-box
+              mode="email"
+              placeholder="Username"
+              [(value)]="loginForm.value.login"
+              [showClearButton]="true"
+              [width]="200"
+            >
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  message="champs obligatoire"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <!-- PASS -->
+        <mat-grid-list cols="9" rowHeight="55px">
+          <mat-grid-tile [colspan]="9">
+            <mat-icon style="cursor: pointer" (click)="changeModePassword()"
+              >remove_red_eye</mat-icon
+            >
+            <dx-text-box
+              placeholder="password"
+              [mode]="modePW"
+              [(value)]="loginForm.value.password"
+              [showClearButton]="true"
+              [width]="200"
+            >
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  message="champs obligatoire"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <!-- Serveur -->
+        <mat-grid-list cols="9" rowHeight="55px" *ngIf="serverList.length > 1">
+          <mat-grid-tile [colspan]="9">
+            <mat-icon>dns</mat-icon>
+            <dx-select-box
+              [dataSource]="serverList"
+              [(value)]="loginForm.value.serverUrl"
+              valueExpr="url"
+              displayExpr="name"
+              [showClearButton]="true"
+              [searchEnabled]="true"
+              [width]="200"
+            >
+            </dx-select-box>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <button
+          mat-raised-button
+          class="login-button"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          <mat-icon>input</mat-icon>
+          Login
+        </button>
+      </div>
+    </form>
+    <div class="app-header app-header-bg">
+      <a
+        id="pixinventLink"
+        href="http://www.bewireless-solutions.com/"
+        class="text-app-header"
+        >Be Wireless Solutions</a
+      >
+    </div>
+  </div>
+</mat-grid-list>

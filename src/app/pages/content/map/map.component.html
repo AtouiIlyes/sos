@@ -1,0 +1,27 @@
+<app-frigo-filter></app-frigo-filter>
+
+<dx-load-panel
+  *ngIf="isLoading"
+  #loadPanel
+  shadingColor="rgba(0,0,0,0.4)"
+  [position]="{ my: 'center', at: 'center' }"
+  [visible]="true"
+  [showIndicator]="true"
+  [showPane]="true"
+  [shading]="true"
+  [closeOnOutsideClick]="false"
+>
+</dx-load-panel>
+<div
+  class="grid-container"
+  id="mapid"
+  style="background-color: rgb(229, 227, 223)"
+></div>
+
+<div class="fab-container">
+  <button mat-fab class="fab-toggler">
+    <i class="material-icons" style="color: white">fullscreen</i>
+  </button>
+</div>
+
+

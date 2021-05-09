@@ -1,0 +1,252 @@
+.border-left-blue-grey {
+  border-left: 1px solid #cfd8dc !important;
+}
+
+.p-3 {
+  padding: 1.5rem !important;
+}
+
+.ps-container {
+  -ms-touch-action: none;
+  touch-action: none;
+  overflow-y: scroll !important;
+  -ms-overflow-style: none;
+}
+
+.text-bold-300 {
+  font-weight: 300;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Montserrat", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  font-weight: 300;
+  line-height: 1.15em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-family: "Rubik", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.5em;
+}
+
+hr {
+  border-color: #a8a8a8;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top-color: currentcolor;
+  border-top-style: none;
+  border-top-width: 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+.text-bold-400 {
+  font-weight: 400;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.mb-3,
+.my-3 {
+  margin-bottom: 1.5rem !important;
+}
+
+h6,
+.h6 {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.customizer {
+  width: 400px;
+  right: -400px;
+  padding: 0;
+  background-color: #fff;
+  z-index: 3000;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  transition: right 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+  backface-visibility: hidden;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+  &.open {
+    right: 0;
+  }
+
+  .customizer-content {
+    position: relative;
+    height: 100%;
+  }
+
+  a.customizer-toggle {
+    background-color: #fff;
+    color: theme-color("primary");
+    display: block;
+    box-shadow: -3px 0px 8px rgba(0, 0, 0, 0.1);
+    z-index: 3000;
+  }
+
+  a.customizer-close {
+    color: #000;
+  }
+
+  .customizer-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 7px;
+    width: auto;
+    z-index: 3000;
+    cursor: pointer;
+  }
+
+  .customizer-toggle {
+    position: absolute;
+    top: 185px;
+    width: 50px;
+    height: 50px;
+    left: -50px;
+    text-align: center;
+    line-height: 65px;
+    cursor: pointer;
+    background-color: #ffce03 !important;
+    border-radius: 50% 0 0 50%;
+  }
+
+  .color-options {
+    a {
+      white-space: pre;
+    }
+  }
+
+  ::ng-deep .mat-form-field {
+    display: inherit;
+  }
+
+  ::ng-deep .mat-radio-button {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .cz-bg-color {
+    margin: 0 auto;
+
+    span {
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.white {
+        color: #ddd !important;
+      }
+    }
+
+    .selected {
+      border: 3px solid #314fe5;
+    }
+  }
+
+  .cz-bg-image {
+    &:hover {
+      cursor: pointer;
+    }
+
+    img.rounded {
+      border-radius: 1rem !important;
+      border: 2px solid #e6e6e6;
+
+      &.selected {
+        border: 2px solid #ff586b;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .dx-field-label {
+  width: 11%;
+  padding: 8px 0 9px 0 !important;
+}
+
+:host ::ng-deep .dx-field-value {
+  width: 87% !important;
+}
+
+:host
+  ::ng-deep
+  .dx-datebox.dx-auto-width.dx-dropdowneditor-button-visible
+  .dx-texteditor-input,
+.dx-datebox:not(.dx-texteditor-empty).dx-auto-width.dx-dropdowneditor-button-visible
+  .dx-texteditor-input {
+  padding-right: 0px !important;
+}
+
+@media only screen and (max-width: 720px) {
+  .customizer {
+    width: 300px;
+    right: -300px;
+
+    .customizer-toggle {
+      top: 182px;
+      width: 40px;
+      height: 40px;
+      left: -40px;
+      line-height: 55px;
+    }
+  }
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #f3cb30 !important;
+}
+
+::ng-deep
+  .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle {
+  border-color: #f3cb30 !important;
+}

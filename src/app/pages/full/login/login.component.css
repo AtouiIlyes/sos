@@ -1,0 +1,123 @@
+body {
+  background-color: #e6e9ea;
+  font-family: "Roboto", sans-serif;
+  margin: 0px !important;
+}
+
+.app-header {
+  color: #fff;
+  /*background-color: #EEEEEE;*/
+  text-align: center;
+  /*padding: 1%;
+    -webkit-box-shadow: 2px 4px 58px -20px rgba(0,0,0,1);
+    -moz-box-shadow: 2px 4px 58px -20px rgba(0,0,0,1);
+    box-shadow: 2px 4px 58px -20px rgba(0,0,0,1);*/
+}
+
+.app-header-bg {
+  padding: 5px;
+  width: 455px;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+}
+
+@media only screen and (max-width: 500px) {
+  .app-header-bg {
+    width: 312px;
+  }
+}
+
+.text-app-header {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  color: #f3cb30;
+  font-weight: 500;
+}
+
+.login-container {
+  width: 100%;
+  min-height: 100vh;
+  /*padding: 0% !important;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 2px 4px 58px -20px rgba(0,0,0,1);
+  -moz-box-shadow: 2px 4px 58px -20px rgba(0,0,0,1);
+  box-shadow: 2px 4px 58px -20px rgba(0,0,0,1);*/
+}
+
+@media only screen and (max-height: 550px) {
+  .login-container {
+    padding-bottom: 60px;
+  }
+}
+
+.login-box-header {
+  width: auto;
+  /*height: 30%;
+    background-color: #FFFFFF;*/
+  text-align: center;
+  vertical-align: middle;
+  font-size: 3em;
+  padding: 5% 5% 2% 5%;
+  color: #fff;
+}
+
+.login-box-body {
+  width: 270px;
+  height: 100%;
+  padding: 2% 5% 3% 5%;
+  color: #2a3869;
+  background-color: #ffffffeb;
+  margin: 0 auto;
+  border-radius: 3px;
+  box-shadow: 0px 0px 14px 0px #0000004d;
+}
+
+@media only screen and (min-width: 650px) {
+  .login-box-body {
+    width: 370px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .login-box-body {
+    width: 450px;
+  }
+}
+
+.login-icon {
+  margin-top: -2px;
+}
+
+.justifier {
+  width: 100%;
+  padding-bottom: 2%;
+}
+
+.login-button {
+  width: 200px;
+  display: block;
+  margin: 7px auto 0 auto;
+  color: #fff !important;
+}
+
+:host ::ng-deep .mat-icon {
+  width: 30px !important;
+}
+
+:host ::ng-deep .mat-input-element {
+  caret-color: #2a3869;
+}
+.bg-login {
+  background-image: url("/assets/icon/background/bg-login.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.position-logo {
+  width: 315px;
+  padding: 2% 5% 0 0;
+}

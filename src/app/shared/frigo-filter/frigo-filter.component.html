@@ -1,0 +1,71 @@
+<!--Theme customizer Starts-->
+<div
+  id="customizer-test"
+  class="customizer border-left-blue-grey d-none d-sm-none d-md-block"
+>
+  <a class="customizer-toggle" id="filter-config-toggle-icon">
+    <i class="material-icons" style="color: white">filter_list</i>
+  </a>
+  <div
+    class="customizer-content p-3 ps-container ps-theme-dark"
+    data-ps-id="df6a5ce4-a175-9172-4402-dabd98fc9c0a"
+  >
+    <h4 class="text-uppercase mb-0 text-bold-300">Appliquer Filtre</h4>
+    <p>Personnaliser et prévisualiser</p>
+    <hr />
+
+    <div class="cz-bg-color">
+      <div class="dx-field">
+        <dx-tag-box
+          [dataSource]="zones"
+          valueExpr="id"
+          [searchEnabled]="true"
+          [showSelectionControls]="true"
+          applyValueMode="useButtons"
+          displayExpr="nom"
+          placeholder="type"
+          [showClearButton]="true"
+          (onValueChanged)="zoneFrigoSelected($event)"
+        >
+        </dx-tag-box>
+      </div>
+      <div class="dx-field">
+        <dx-text-box
+          [(value)]="nomEspace"
+          placeholder="Nom"
+          [showClearButton]="true"
+          valueChangeEvent="keyup"
+          (onValueChanged)="nomFrigoChanged($event)"
+        ></dx-text-box>
+      </div>
+
+      <div class="dx-field" *ngIf="showEspaceTypeFilter">
+        <dx-text-box
+          [(value)]="client"
+          placeholder="Client"
+          [showClearButton]="true"
+          valueChangeEvent="keyup"
+          (onValueChanged)="clientChanged($event)"
+        ></dx-text-box>
+      </div>
+      <div class="dx-field" *ngIf="showEspaceTypeFilter">
+        <dx-text-box
+          [(value)]="nomDevice"
+          placeholder="Série Boîtier"
+          [showClearButton]="true"
+          valueChangeEvent="keyup"
+          (onValueChanged)="nomDeviceChanged($event)"
+        ></dx-text-box>
+      </div>
+
+      <dx-button
+        text="Réinitialiser"
+        [width]="120"
+        style="margin-top: 20px"
+        type="normal"
+        (onClick)="clearFilter()"
+      ></dx-button>
+    </div>
+  </div>
+</div>
+<!--Theme customizer Ends-->
