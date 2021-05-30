@@ -1,0 +1,68 @@
+<div class="grid-container">
+  <mat-tab-group animationDuration="0ms" #tabGroup>
+    <mat-tab label="Groupe">
+      <mat-card>
+        <form novalidate="" (ngSubmit)="onSubmit()" #addMemberForm>
+          <div>
+            <div class="frigo-form-container">
+              <div
+                class="frigo-form-container"
+                *ngFor="let member of members; let i = index"
+              >
+                <div class="border">
+                  <mat-form-field style="width: 100%">
+                    <input
+                      matInput
+                      name="nom"
+                      [(ngModel)]="member.nom"
+                      [placeholder]="'Nom membre ' + (i + 1)"
+                    />
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%">
+                    <mat-label>Telephone</mat-label>
+                    <span matPrefix>+216 &nbsp;</span>
+                    <input
+                      type="tel"
+                      matInput
+                      placeholder="** *** ***"
+                      name="phoneNumber"
+                      [(ngModel)]="member.phoneNumber"
+                    />
+
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <mat-card-actions style="height: 50px">
+          <div style="float: right">
+            <button
+              mat-button
+              mat-raised-button
+              (click)="addMember()"
+              type="button"
+            >
+              Ajouter Membre
+            </button>
+            <button mat-button mat-raised-button cdkFocusInitial type="submit">
+              Valider
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </mat-tab>
+
+    <mat-tab label="Message d'urgence">
+      <mat-card>
+        <dx-text-area
+          [height]="90"
+          [value]="message"
+          id="Observation"
+          [disabled]="true"
+        >
+        </dx-text-area>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>

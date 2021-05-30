@@ -1,0 +1,25 @@
+.grid-container {
+  margin: 20px;
+}
+::ng-deep #form-container {
+  margin: 10px;
+}
+
+::ng-deep .long-title h4 {
+  font-family: "Segoe UI Light", "Helvetica Neue Light", "Segoe UI",
+    "Helvetica Neue", "Trebuchet MS", Verdana;
+  font-weight: 200;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+::ng-deep .long-title {
+  display: flex;
+}
+
+::ng-deep
+  .dx-layout-manager
+  .dx-label-h-align.dx-flex-layout
+  .dx-field-item-label {
+  margin: auto;
+}

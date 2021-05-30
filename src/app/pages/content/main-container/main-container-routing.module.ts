@@ -13,6 +13,16 @@ const routes: Routes = [
         loadChildren: () =>
           import("../map/map.module").then((m) => m.MapModule),
       },
+      {
+        path: "health-card",
+        loadChildren: () =>
+          import("../health-card/health-card.module").then((m) => m.HealthCardModule),
+      },
+      {
+        path: "equipe",
+        loadChildren: () =>
+          import("../family-group/family-group.module").then((m) => m.FamilyGroupModule),
+      },
       // {
       //   path: "supervision",
       //   loadChildren: () =>
