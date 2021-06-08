@@ -1,3 +1,4 @@
+import { ZoneService } from './../../services/data/zone.service';
 import { UtilsService } from "src/app/services/data/utils.service";
 import {
   AfterViewInit,
@@ -13,7 +14,7 @@ import "devextreme-intl";
 import { loadMessages, locale } from "devextreme/localization";
 import { fr } from "../../services/data/fr";
 import { Subscription } from "rxjs";
-import { ZoneService } from "src/app/services/data/zone.service";
+import { UrgenceDepartmentsService } from "src/app/services/data/urgenceDepartments.service";
 
 @Component({
   selector: "app-frigo-filter",
@@ -38,15 +39,13 @@ export class FrigoFilterComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     @Inject(DOCUMENT) public document,
-    public zoneService: ZoneService,
-
+    private zoneService: ZoneService,
     public utils: UtilsService
   ) {
 
   }
 
   ngOnInit() {
-    // this.zoneService.getZones();
   }
 
   ngAfterViewInit() {

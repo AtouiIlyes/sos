@@ -14,6 +14,7 @@ import { UtilsService } from 'src/app/services/data/utils.service';
 
 import { loadMessages, locale } from 'devextreme/localization';
 import { fr } from 'src/app/services/data/fr';
+import { UrgenceDepartmentsService } from 'src/app/services/data/urgenceDepartments.service';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -40,7 +41,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
   zones = [];
-  zoneSubscription: Subscription = new Subscription();
+  departmentSubscription: Subscription = new Subscription();
   filteredZoneSubscription: Subscription = new Subscription();
   activeLayerGroup: any;
   layerGroups: any[];
@@ -65,6 +66,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private resolver: ComponentFactoryResolver,
+    public urgenceDepartmentsService: UrgenceDepartmentsService,
     private injector: Injector,
     public zoneService: ZoneService,
     public utilsService: UtilsService
@@ -74,32 +76,49 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.layerGroups = [];
     this.activeLayerGroup = L.featureGroup([]);
     this.layerGroups.push(this.activeLayerGroup);
-    // this.zoneSubscription = this.zoneService.observableZoneWithFrigos.subscribe(
-    //   (items: any) => {
-    //     if (items !== undefined) {
-    //       if (this.myMap !== undefined) {
-    //         this.initMarkerCluster();
-    //         for (let item of items) {
-    //           this.updateMapCluster(item.frigos);
-    //           let geoJsonData = JSON.parse(item.geometry);
-    //           if (geoJsonData.length !== 0) {
-    //             if (!this.utilsService.isEmptyObject(geoJsonData)) {
-    //               this.fromGeoJson(item, geoJsonData);
-    //             }
-    //           }
-    //         }
-    //         this.myMap.addLayer(this.markersCluster);
-    //       }
-    //       if (this.markersCluster !== undefined) {
-    //         const bounds = this.markersCluster.getBounds();
-    //         if (!this.utilsService.isEmptyObject(bounds)) {
-    //           this.myMap.fitBounds(bounds);
-    //         }
-    //       }
-    //       this.isLoading = false;
-    //     }
-    //   }
-    // );
+    this.departmentSubscription =
+      this.urgenceDepartmentsService.observableUrgenceDepartments.subscribe((items: any) => {
+        if (items !== undefined) {
+          this.urgenceDepartments = items;
+          if (this.myMap !== undefined) {
+            this.layerGroups = [];
+            this.activeLayerGroup.clearLayers();
+            this.initMarkerCluster();
+            this.updateMapCluster(this.urgenceDepartments);
+            if (this.markersCluster !== undefined) {
+              const bounds = this.markersCluster.getBounds();
+              if (!this.utilsService.isEmptyObject(bounds)) {
+                this.myMap.fitBounds(bounds);
+              }
+            }
+            this.myMap.addLayer(this.markersCluster);
+            let that = this;
+            this.myMap.locate({
+              setView: true,
+              maxZoom: 16,
+              watch: true,
+              enableHighAccuracy: true,
+            });
+            this.myMap.on('locationfound', (e) => {
+              let radius = e.accuracy;
+              L.marker(this.randomizeLocation(e.latitude, e.longitude), {
+                icon: this.getIcon('police'),
+              })
+                .addTo(this.myMap)
+                .bindPopup(
+                  'You are within ' + radius + ' meters from this point'
+                )
+                .openPopup();
+
+              L.circle(e.latlng, radius / 2).addTo(this.myMap);
+            });
+            this.myMap.on('locationerror', (e) => {
+              alert(e.message);
+            });
+            this.isLoading = false;
+          }
+        }
+      });
 
     // this.filteredZoneSubscription = this.zoneService.observableFilteredZone.subscribe(
     //   (items: any) => {
@@ -134,7 +153,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     // );
   }
   ngOnDestroy(): void {
-    this.zoneSubscription.unsubscribe();
+    this.departmentSubscription.unsubscribe();
   }
 
   initMarkerCluster() {
@@ -185,7 +204,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.zoneService.importZonesWithFrigos();
+    this.urgenceDepartmentsService.getUrgenceDepartments();
   }
 
   updateMapCluster(frigos) {
@@ -251,43 +270,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     L.tileLayer('http://mt.google.com/vt/lyrs=y&x={x}&y={y}&z={z}').addTo(
       this.myMap
     );
-    setTimeout(() => {
-      if (this.myMap !== undefined) {
-        this.layerGroups = [];
-        this.activeLayerGroup.clearLayers();
-        this.initMarkerCluster();
-        this.updateMapCluster(this.urgenceDepartments);
-        if (this.markersCluster !== undefined) {
-          const bounds = this.markersCluster.getBounds();
-          if (!this.utilsService.isEmptyObject(bounds)) {
-            this.myMap.fitBounds(bounds);
-          }
-        }
-        this.myMap.addLayer(this.markersCluster);
-        let that = this;
-        this.myMap.locate({
-          setView: true,
-          maxZoom: 16,
-          watch: true,
-          enableHighAccuracy: true,
-        });
-        this.myMap.on('locationfound', (e) => {
-          let radius = e.accuracy;
-          L.marker(this.randomizeLocation(e.latitude, e.longitude), {
-            icon: this.getIcon('police'),
-          })
-            .addTo(this.myMap)
-            .bindPopup('You are within ' + radius + ' meters from this point')
-            .openPopup();
-
-          L.circle(e.latlng, radius / 2).addTo(this.myMap);
-        });
-        this.myMap.on('locationerror', (e) => {
-          alert(e.message);
-        });
-        this.isLoading = false;
-      }
-    }, 2000);
+    setTimeout(() => {}, 2000);
   }
 
   drawFrigo(data) {

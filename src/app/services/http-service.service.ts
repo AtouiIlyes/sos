@@ -1,17 +1,17 @@
-import { UtilsService } from "./data/utils.service";
-import { Observable } from "rxjs";
+import { UtilsService } from './data/utils.service';
+import { Observable } from 'rxjs';
 import {
   HttpErrorResponse,
   HttpHeaders,
   HttpResponse,
-} from "@angular/common/http";
-import { HTTP } from "@ionic-native/http/ngx";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Platform } from "@ionic/angular";
+} from '@angular/common/http';
+import { HTTP } from '@ionic-native/http/ngx';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class HttpService {
   response: any;
@@ -22,9 +22,9 @@ export class HttpService {
     private utils: UtilsService
   ) {}
 
-  postResponse(url:any, body:any, options:any) {
-    if (this.platform.is("desktop")) {
-      return this.ngHttp.post(this.utils.getServerUrl() + url, body, options);
+  postResponse(url: any, body: any, options: any) {
+    if (this.platform.is('desktop')) {
+      return this.ngHttp.post(url, body, options);
     } else {
       let urlForMobile = this.utils.getFullUrl(url);
       return new Observable((observer) => {

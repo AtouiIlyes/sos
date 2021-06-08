@@ -1,7 +1,7 @@
 export const SERVER_LIST = [
   {
     name: "BWS",
-    url: "bws/",
+    url: "sos/",
     fullPath: "https://iot-gtw.bewireless-solutions.com/diag/lora/",
   },
 ];
