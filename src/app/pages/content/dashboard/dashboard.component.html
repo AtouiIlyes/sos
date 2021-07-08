@@ -1,9 +1,104 @@
 <div class="grid-container">
-  <mat-card class="full-grid-container">
-    <div class="example-button-container">
-      <button mat-fab disabled style="background-color: #ff4081;">
-        <mat-icon style="color: #fff;">home</mat-icon>
-      </button>
+  <div class="two-cards">
+    <div class="one-card">
+      <mat-card
+        class="full-grid-container"
+        (click)="
+          openUrgenceDialog({ type: 'police', help_department: 'Police' })
+        "
+      >
+        <div class="example-button-container">
+          <button
+            mat-fab
+            disabled
+            style="background-color: #337ab7; margin-bottom: 10px"
+          >
+            <mat-icon style="color: #fff">gavel</mat-icon>
+          </button>
+        </div>
+        <h2 style="text-align: center">Police</h2>
+      </mat-card>
     </div>
-  </mat-card>
+    <div class="one-card" style="margin-right: 0">
+      <mat-card
+        class="full-grid-container"
+        (click)="
+          openUrgenceDialog({ type: 'ambulance', help_department: 'Ambulance' })
+        "
+      >
+        <div class="example-button-container">
+          <button
+            mat-fab
+            disabled
+            style="background-color: #ff4081; margin-bottom: 10px"
+          >
+            <mat-icon style="color: #fff">favorite</mat-icon>
+          </button>
+        </div>
+        <h2 style="text-align: center">Ambulance</h2>
+      </mat-card>
+    </div>
+  </div>
+  <div class="center-card">
+    <mat-card
+      class="full-grid-container"
+      (click)="
+        openUrgenceDialog({
+          type: 'all',
+          help_department: 'Tous les moyens d\'urgence'
+        })
+      "
+      >>
+      <div class="example-button-container">
+        <button
+          mat-fab
+          disabled
+          style="background-color: #ff1111; margin-bottom: 10px"
+        >
+          <mat-icon style="color: #fff">help</mat-icon>
+        </button>
+      </div>
+      <h2 style="text-align: center">Tous les moyens d'urgence</h2>
+    </mat-card>
+  </div>
+  <div class="two-cards">
+    <div class="one-card">
+      <mat-card
+        class="full-grid-container"
+        (click)="
+          openUrgenceDialog({ type: 'fire', help_department: 'Pompier' })
+        "
+      >
+        <div class="example-button-container">
+          <button
+            mat-fab
+            disabled
+            style="background-color: #777777; margin-bottom: 10px"
+          >
+            <mat-icon style="color: #fff">accessibility</mat-icon>
+          </button>
+        </div>
+        <h2 style="text-align: center">Pompier</h2>
+      </mat-card>
+    </div>
+    <div class="one-card" style="margin-right: 0">
+      <mat-card class="full-grid-container">
+        <div class="example-button-container">
+          <button
+            mat-fab
+            disabled
+            style="background-color: #4cae4c; margin-bottom: 10px"
+          >
+            <mat-icon style="color: #fff">info</mat-icon>
+          </button>
+        </div>
+        <h2
+          style="text-align: center"
+          (click)="openUrgenceDialog({ type: 'samu', help_department: 'SAMU' })"
+        >
+          SAMU
+        </h2>
+      </mat-card>
+    </div>
+  </div>
 </div>

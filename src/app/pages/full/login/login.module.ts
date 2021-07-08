@@ -16,9 +16,10 @@ import {
   DxTextBoxModule,
   DxValidatorModule,
 } from "devextreme-angular";
+import { SignUpComponent } from "./sign-up/sign-up.component";
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, SignUpComponent],
   imports: [
     CommonModule,
     FormsModule,

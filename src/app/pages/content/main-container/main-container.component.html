@@ -26,14 +26,14 @@
         >
           <mat-icon
             *ngIf="item.routeIcon !== '' && isMatIcon(item.routeIcon)"
-            class="bg-icon-menu"
+            class="bg-icon-menu" style="font-size: 20px"
             >{{ item.routeIcon }}
           </mat-icon>
           <div *ngIf="item.routeIcon !== '' && !isMatIcon(item.routeIcon)">
             <img
               [src]="getIconPath(item.routeIcon)"
               class="bg-icon-menu"
-              style="height: 24px; width: 24px"
+              style="height: 24px; width: 24px; "
             />
           </div>
           {{ item.routeTitle }}
@@ -44,7 +44,7 @@
         >
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon *ngIf="item.routeIcon !== ''" class="bg-icon-menu">{{
+              <mat-icon *ngIf="item.routeIcon !== ''" class="bg-icon-menu" style="font-size: 20px">{{
                 item.routeIcon
               }}</mat-icon>
               <span style="padding: 5px 0">{{ item.routeTitle }}</span>
@@ -60,7 +60,7 @@
               style="margin-left: 10px"
               (click)="closeNavSide(drawer)"
             >
-              <mat-icon *ngIf="item.routeIcon !== ''">{{
+              <mat-icon *ngIf="item.routeIcon !== ''" style="font-size: 20px">{{
                 subItem.routeIcon
               }}</mat-icon>
               {{ subItem.routeTitle }}

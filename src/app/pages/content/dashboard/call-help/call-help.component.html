@@ -1,0 +1,29 @@
+<h2 class="mat-dialog-title-popup" mat-dialog-title>
+  Demander {{ data.help_department }}
+</h2>
+<div mat-dialog-content>
+  <h2>
+    En appuyant sur Demande d'urgence, l'application suit votre position et
+    envoie un SMS d'urgence au groupe de contacts que vous avez choisi.
+  </h2>
+</div>
+<div mat-dialog-actions style="float: right">
+  <button
+    class="btn"
+    style="margin-right: 5px"
+    mat-raised-button
+    (click)="askHelp()"
+  >
+    Demander urgence
+  </button>
+
+  <button
+    class="btn"
+    mat-button
+    mat-raised-button
+    mat-dialog-close
+    (click)="onNoClick()"
+  >
+    Fermer
+  </button>
+</div>

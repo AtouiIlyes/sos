@@ -17,12 +17,12 @@
     <div class="cz-bg-color">
       <div class="dx-field">
         <dx-tag-box
-          [dataSource]="zones"
+          [dataSource]="departmentTypes"
           valueExpr="id"
           [searchEnabled]="true"
           [showSelectionControls]="true"
           applyValueMode="useButtons"
-          displayExpr="nom"
+          displayExpr="value"
           placeholder="type"
           [showClearButton]="true"
           (onValueChanged)="zoneFrigoSelected($event)"

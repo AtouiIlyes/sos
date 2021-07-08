@@ -9,14 +9,50 @@
     </div>
     <form novalidate="" (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <div class="login-box-body">
+         <!-- firstName -->
+         <mat-grid-list cols="9" rowHeight="55px">
+          <mat-grid-tile [colspan]="9">
+
+            <dx-text-box
+              placeholder="firstName"
+              [(value)]="loginForm.value.firstName"
+              [showClearButton]="true"
+              [width]="200"
+            >
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  message="champs obligatoire"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <!-- lastName -->
+        <mat-grid-list cols="9" rowHeight="55px">
+          <mat-grid-tile [colspan]="9">
+
+            <dx-text-box
+              placeholder="lastName"
+              [(value)]="loginForm.value.lastName"
+              [showClearButton]="true"
+              [width]="200"
+            >
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  message="champs obligatoire"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </mat-grid-tile>
+        </mat-grid-list>
         <!-- LOGIN -->
         <mat-grid-list cols="9" rowHeight="55px">
           <mat-grid-tile [colspan]="9">
-            <mat-icon>lock</mat-icon>
             <dx-text-box
-              mode="email"
-              placeholder="Username"
-              [(value)]="loginForm.value.login"
+              placeholder="email"
+              [(value)]="loginForm.value.email"
               [showClearButton]="true"
               [width]="200"
             >
@@ -32,9 +68,6 @@
         <!-- PASS -->
         <mat-grid-list cols="9" rowHeight="55px">
           <mat-grid-tile [colspan]="9">
-            <mat-icon style="cursor: pointer" (click)="changeModePassword()"
-              >remove_red_eye</mat-icon
-            >
             <dx-text-box
               placeholder="password"
               [mode]="modePW"
@@ -51,22 +84,7 @@
             </dx-text-box>
           </mat-grid-tile>
         </mat-grid-list>
-        <!-- Serveur -->
-        <mat-grid-list cols="9" rowHeight="55px" *ngIf="serverList.length > 1">
-          <mat-grid-tile [colspan]="9">
-            <mat-icon>dns</mat-icon>
-            <dx-select-box
-              [dataSource]="serverList"
-              [(value)]="loginForm.value.serverUrl"
-              valueExpr="url"
-              displayExpr="name"
-              [showClearButton]="true"
-              [searchEnabled]="true"
-              [width]="200"
-            >
-            </dx-select-box>
-          </mat-grid-tile>
-        </mat-grid-list>
+
         <button
           mat-raised-button
           class="login-button"
@@ -74,15 +92,10 @@
           [disabled]="!loginForm.valid"
         >
           <mat-icon>input</mat-icon>
-          Login
+          Sign up
         </button>
-        <div style="text-align: center; margin-top: 10px">
-          <a routerLink="signup" class="text-app-header">Créer compte</a>
-        </div>
       </div>
     </form>
-    <div class="app-header app-header-bg">
-      <a id="pixinventLink" href="" class="text-app-header">SOS V1.0.0</a>
-    </div>
+
   </div>
 </mat-grid-list>

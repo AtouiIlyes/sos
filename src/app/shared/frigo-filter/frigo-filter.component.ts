@@ -36,7 +36,12 @@ export class FrigoFilterComponent implements OnInit, AfterViewInit, OnDestroy {
   client = "";
   zone = "";
   typeEspace = "";
-
+  departmentTypes = [
+    { id: 'police', value: 'Police' },
+    { id: 'fire_station', value: 'Pompiers' },
+    { id: 'ambulence', value: 'Ambulance' },
+    { id: 'samu', value: 'SAMU' },
+  ];
   constructor(
     @Inject(DOCUMENT) public document,
     private zoneService: ZoneService,

@@ -1,9 +1,10 @@
 .grid-container {
-  min-height: 80vh;
+  min-height: 90vh;
   margin: 20px;
 }
 .full-grid-container {
-  min-height: 90vh;
+  min-height: 30vh;
+  padding: 25px !important;
 }
 .example-label {
   display: table-cell;
@@ -30,5 +31,24 @@
 .example-button-container {
   display: flex;
   justify-content: center;
-  width: 120px;
+  text-align: center;
+}
+:host ::ng-deep .full-grid-container {
+  min-height: 20vh !important;
+}
+
+.two-cards {
+  display: flex;
+  height: 25vh;
+  margin-bottom: 20px;
+}
+
+.one-card {
+  width: 50%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.center-card {
+  height: 30vh;
+  cursor: pointer;
 }

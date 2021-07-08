@@ -11,12 +11,14 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ServiceModule } from "./services/services.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HTTP } from "@ionic-native/http/ngx";
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    MatDialogModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     ServiceModule,

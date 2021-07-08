@@ -75,7 +75,7 @@ export class MainContainerComponent implements OnDestroy {
 
   logout() {
     localStorage.removeItem("login");
-    this.router.navigate(["pressReleases"]);
+    this.router.navigate(["login"]);
     this.checkLogin = this.utils.checkLogin();
     let userName = localStorage.getItem("login");
     this.login = this.checkLogin ? userName : "LOG IN";

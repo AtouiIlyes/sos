@@ -61,6 +61,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     shadowSize: [41, 41],
     compileMessage: true,
   });
+  iconMe = L.icon({
+    iconUrl: './assets/img/icon/me.svg',
+    iconSize: [60, 75],
+    iconAnchor: [15, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+    compileMessage: true,
+  });
   markersCluster: any;
   color = '#ffaa00';
 
@@ -102,15 +110,15 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
             this.myMap.on('locationfound', (e) => {
               let radius = e.accuracy;
               L.marker(this.randomizeLocation(e.latitude, e.longitude), {
-                icon: this.getIcon('police'),
+                icon: this.iconMe,
               })
                 .addTo(this.myMap)
                 .bindPopup(
-                  'You are within ' + radius + ' meters from this point'
+                  'Vous etes ici '
                 )
                 .openPopup();
 
-              L.circle(e.latlng, radius / 2).addTo(this.myMap);
+              L.circle(e.latlng, 10 / 2).addTo(this.myMap);
             });
             this.myMap.on('locationerror', (e) => {
               alert(e.message);

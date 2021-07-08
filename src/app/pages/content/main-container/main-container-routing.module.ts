@@ -29,7 +29,7 @@ const routes: Routes = [
       //     import("../frigo/frigo.module").then((m) => m.FrigoModule),
       // },
       {
-        path: "dashboard",
+        path: "urgence",
         loadChildren: () =>
           import("../dashboard/dashboard.module").then(
             (m) => m.DashboardModule

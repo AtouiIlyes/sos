@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FullRoutingModule } from './full-routing.module';
 import { FullComponent } from './full.component';
+import { SignUpComponent } from './login/sign-up/sign-up.component';
 
 
 @NgModule({
