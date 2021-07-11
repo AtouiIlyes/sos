@@ -65,6 +65,24 @@
             </dx-text-box>
           </mat-grid-tile>
         </mat-grid-list>
+        <!-- CIN -->
+        <mat-grid-list cols="9" rowHeight="55px">
+          <mat-grid-tile [colspan]="9">
+            <dx-text-box
+              placeholder="CIN"
+              [(value)]="loginForm.value.id"
+              [showClearButton]="true"
+              [width]="200"
+            >
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  message="champs obligatoire"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </mat-grid-tile>
+        </mat-grid-list>
         <!-- PASS -->
         <mat-grid-list cols="9" rowHeight="55px">
           <mat-grid-tile [colspan]="9">

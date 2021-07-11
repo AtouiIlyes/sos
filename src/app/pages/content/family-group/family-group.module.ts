@@ -9,7 +9,7 @@ import { FamilyGroupComponent } from './family-group.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { DxTextAreaModule, DxValidatorModule } from 'devextreme-angular';
+import { DxTextAreaModule, DxValidatorModule, DxButtonModule, DxTextBoxModule } from 'devextreme-angular';
 
 @NgModule({
   declarations: [FamilyGroupComponent],
@@ -23,6 +23,8 @@ import { DxTextAreaModule, DxValidatorModule } from 'devextreme-angular';
     FormsModule,
     MatInputModule,
     DxTextAreaModule,
+    DxButtonModule,
+    DxTextBoxModule,
     DxValidatorModule
   ],
 })

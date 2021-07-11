@@ -29,10 +29,12 @@ export class SignUpComponent implements OnInit {
       this.loginForm.value.email !== "" &&
       this.loginForm.value.password !== "" &&
       this.loginForm.value.firstName !== "" &&
+      this.loginForm.value.id !== "" &&
       this.loginForm.value.lastName !== ""
     ) {
       this.authService.signUpUser({
-        email: this.loginForm.value.email.toLowerCase(),
+        id: this.loginForm.value.id,
+        email: this.loginForm.value.email,
         password: this.loginForm.value.password,
         firstName: this.loginForm.value.firstName,
         lastName: this.loginForm.value.lastName,

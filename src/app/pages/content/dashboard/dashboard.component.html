@@ -1,10 +1,15 @@
+<div id="mapid" ></div>
 <div class="grid-container">
   <div class="two-cards">
     <div class="one-card">
       <mat-card
         class="full-grid-container"
         (click)="
-          openUrgenceDialog({ type: 'police', help_department: 'Police' })
+          openUrgenceDialog({
+            type: 'police',
+            help_department: 'Police',
+            typeUrgence: 'police'
+          })
         "
       >
         <div class="example-button-container">
@@ -23,7 +28,11 @@
       <mat-card
         class="full-grid-container"
         (click)="
-          openUrgenceDialog({ type: 'ambulance', help_department: 'Ambulance' })
+          openUrgenceDialog({
+            type: 'ambulance',
+            help_department: 'Ambulance',
+            typeUrgence: 'ambulence'
+          })
         "
       >
         <div class="example-button-container">
@@ -45,7 +54,8 @@
       (click)="
         openUrgenceDialog({
           type: 'all',
-          help_department: 'Tous les moyens d\'urgence'
+          help_department: 'Tous les moyens d\'urgence',
+          typeUrgence: 'all'
         })
       "
       >>
@@ -66,7 +76,11 @@
       <mat-card
         class="full-grid-container"
         (click)="
-          openUrgenceDialog({ type: 'fire', help_department: 'Pompier' })
+          openUrgenceDialog({
+            type: 'fire',
+            help_department: 'Pompier',
+            typeUrgence: 'fire_station'
+          })
         "
       >
         <div class="example-button-container">
@@ -82,7 +96,16 @@
       </mat-card>
     </div>
     <div class="one-card" style="margin-right: 0">
-      <mat-card class="full-grid-container">
+      <mat-card
+        class="full-grid-container"
+        (click)="
+          openUrgenceDialog({
+            type: 'samu',
+            help_department: 'SAMU',
+            typeUrgence: 'samu'
+          })
+        "
+      >
         <div class="example-button-container">
           <button
             mat-fab
@@ -92,12 +115,7 @@
             <mat-icon style="color: #fff">info</mat-icon>
           </button>
         </div>
-        <h2
-          style="text-align: center"
-          (click)="openUrgenceDialog({ type: 'samu', help_department: 'SAMU' })"
-        >
-          SAMU
-        </h2>
+        <h2 style="text-align: center">SAMU</h2>
       </mat-card>
     </div>
   </div>

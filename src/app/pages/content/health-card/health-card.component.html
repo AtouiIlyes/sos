@@ -2,6 +2,17 @@
   <mat-tab-group animationDuration="0ms" #tabGroup>
     <mat-tab label="Information personnelles">
       <mat-card>
+        <div style="float: right">
+          <button
+            mat-button
+            mat-raised-button
+            cdkFocusInitial
+            type="submit"
+            (click)="updateForm()"
+          >
+            Modifier
+          </button>
+        </div>
         <div id="form-container">
           <dx-form id="form" [formData]="user" [colCount]="2">
             <dxi-item
@@ -11,6 +22,7 @@
             >
               <dxi-item
                 dataField="id"
+                [editorOptions]="{ disabled: true }"
                 [label]="{ text: 'Identifiant' }"
               ></dxi-item>
               <dxi-item
@@ -25,6 +37,7 @@
             <dxi-item itemType="group" caption="Données personnelles">
               <dxi-item
                 dataField="birthDate"
+                editorType="dxDateBox"
                 [label]="{ text: 'Date de naissaince' }"
               ></dxi-item>
               <dxi-item itemType="group" caption="Adresse du domicile">
@@ -57,7 +70,10 @@
                   <dxi-item dataField="skype"></dxi-item>
                 </dxi-tab>
                 <dxi-tab title="Email">
-                  <dxi-item dataField="email"></dxi-item>
+                  <dxi-item
+                    dataField="email"
+                    [editorOptions]="{ disabled: true }"
+                  ></dxi-item>
                 </dxi-tab>
               </dxi-item>
             </dxi-item>
@@ -68,24 +84,32 @@
 
     <mat-tab label="Information sanitaires">
       <mat-card>
+        <div style="float: right">
+          <button
+            mat-button
+            mat-raised-button
+            cdkFocusInitial
+            type="submit"
+            (click)="updateHealthForm()"
+          >
+            Modifier
+          </button>
+        </div>
         <div id="form-container">
-          <dx-form id="form" [formData]="user" [colCount]="2">
+          <dx-form id="form" [formData]="healthCard" [colCount]="2">
             <dxi-item itemType="group" caption="Allergie sévère">
               <dxi-item
-                dataField="Identifiant"
+                dataField="anaphylaxis"
                 [label]="{ text: 'Anaphylaxie' }"
+                itemTemplate="customDevice"
               >
-                <div *dxTemplate>
-                  <dx-radio-group
-                    [items]="items"
-                    [value]="items[0]"
-                    layout="horizontal"
-                  >
+              <div *dxTemplate="let d of 'customDevice'">
+                <dx-radio-group [items]="items" [value]="d.anaphylaxis" layout="horizontal">
                   </dx-radio-group>
                 </div>
               </dxi-item>
               <dxi-item
-                dataField="Identifiant"
+                dataField="epipen"
                 [label]="{ text: 'Épipen ou Twinject ' }"
               >
                 <div *dxTemplate>
@@ -99,12 +123,15 @@
               </dxi-item>
             </dxi-item>
             <dxi-item itemType="group" caption="Général">
-              <dxi-item dataField="type" [label]="{ text: 'Groupe sanguain' }">
+              <dxi-item
+                dataField="blood_group"
+                [label]="{ text: 'Groupe sanguain' }"
+              >
                 <div *dxTemplate>
                   <dx-select-box [dataSource]="bloodType"></dx-select-box>
                 </div>
               </dxi-item>
-              <dxi-item dataField="Identifiant" [label]="{ text: 'Diabéte' }">
+              <dxi-item dataField="diabetes" [label]="{ text: 'Diabéte' }">
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
@@ -115,7 +142,10 @@
                 </div>
               </dxi-item>
 
-              <dxi-item dataField="Identifiant" [label]="{ text: 'Donneur d\'organne ' }">
+              <dxi-item
+                dataField="organ_donor"
+                [label]="{ text: 'Donneur d\'organne ' }"
+              >
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
@@ -126,7 +156,7 @@
                 </div>
               </dxi-item>
               <dxi-item
-                dataField="Identifiant"
+                dataField="family_doctor"
                 [label]="{ text: 'Médecin de famille' }"
               >
                 <div *dxTemplate>
@@ -139,11 +169,10 @@
                 </div>
               </dxi-item>
               <dxi-item
-                dataField="Address"
+                dataField="doctor"
                 [label]="{ text: 'Si oui ' }"
               ></dxi-item>
             </dxi-item>
-
           </dx-form>
         </div>
       </mat-card>

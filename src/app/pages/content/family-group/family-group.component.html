@@ -10,26 +10,48 @@
                 *ngFor="let member of members; let i = index"
               >
                 <div class="border">
-                  <mat-form-field style="width: 100%">
-                    <input
-                      matInput
-                      name="nom"
-                      [(ngModel)]="member.nom"
-                      [placeholder]="'Nom membre ' + (i + 1)"
-                    />
-                  </mat-form-field>
-                  <mat-form-field style="width: 100%">
-                    <mat-label>Telephone</mat-label>
-                    <span matPrefix>+216 &nbsp;</span>
-                    <input
-                      type="tel"
-                      matInput
-                      placeholder="** *** ***"
-                      name="phoneNumber"
-                      [(ngModel)]="member.phoneNumber"
-                    />
+                  <div class="column">
+                    <div class="field">
+                      <div class="label">Nom membre {{ i + 1 }}</div>
+                      <div class="value">
+                        <dx-text-box
+                          [(value)]="member.name"
+                          [placeholder]="'Nom membre ' + (i + 1)"
+                        ></dx-text-box>
+                      </div>
+                      <dx-button
+                        style="width: 36px"
+                        icon="trash"
+                        (onClick)="removeMember(member.phone_number, i)"
+                      >
+                      </dx-button>
+                    </div>
 
-                  </mat-form-field>
+                    <div class="field">
+                      <div class="label">Telephone {{ i + 1 }}</div>
+                      <div class="value">
+                        <dx-text-box
+                          [(value)]="member.phone_number"
+                          placeholder="** *** ***"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="custom"
+                              [reevaluate]="true"
+                              [validationCallback]="validationRulesPhone"
+                              message="Format non valide"
+                            ></dxi-validation-rule>
+                          </dx-validator>
+                        </dx-text-box>
+                      </div>
+                      <dx-button
+                        style="width: 36px"
+                        icon="add"
+                        (onClick)="addNewMember(member)"
+                      >
+                      </dx-button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -45,9 +67,6 @@
             >
               Ajouter Membre
             </button>
-            <button mat-button mat-raised-button cdkFocusInitial type="submit">
-              Valider
-            </button>
           </div>
         </mat-card-actions>
       </mat-card>
@@ -55,12 +74,20 @@
 
     <mat-tab label="Message d'urgence">
       <mat-card>
-        <dx-text-area
-          [height]="90"
-          [value]="message"
-          id="Observation"
-        >
+        <dx-text-area [height]="190" [(value)]="message">
         </dx-text-area>
+        <mat-card-actions style="height: 50px">
+          <div style="float: right">
+            <button
+              mat-button
+              mat-raised-button
+              (click)="updateMessage()"
+              type="button"
+            >
+              Modifier message d'urgence
+            </button>
+          </div>
+        </mat-card-actions>
       </mat-card>
     </mat-tab>
   </mat-tab-group>

@@ -52,3 +52,7 @@
   height: 30vh;
   cursor: pointer;
 }
+#mapid {
+  z-index: 0 !important;
+  position: absolute;
+}

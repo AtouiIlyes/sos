@@ -17,3 +17,30 @@
   border-radius: 16px;
   padding: 10px;
 }
+
+::ng-deep .column {
+  width: calc(100% );
+  display: inline-block;
+  margin: 0px 2px;
+  text-align: left;
+  padding: 5px;
+  vertical-align: top;
+}
+
+::ng-deep .column .field {
+  padding: 5px 0;
+}
+
+::ng-deep .column .field > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+::ng-deep .column .field .label {
+  width: 100px;
+}
+
+::ng-deep .column .field .value {
+  width: calc(80% - 46px);
+  padding: 0 5px;
+}

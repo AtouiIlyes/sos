@@ -39,6 +39,7 @@ export class AuthService {
       .subscribe(
         (data: any) => {
           if (data.Result === 1) {
+            localStorage.setItem("user", JSON.stringify(data));
             this.login(data.lastName + ' ' + data.firstName);
             this.router.navigate(['urgence']);
           } else {
@@ -59,26 +60,28 @@ export class AuthService {
     let body = new URLSearchParams();
     const dataBody =
       '{"type":1' +
-      ',"email":' +
-      loginData.username +
-      ',"password":' +
+      ',"id":"' +
+      loginData.id +
+      '","email":"' +
+      loginData.email +
+      '","pwd":"' +
       loginData.password +
-      ',"firstName":' +
+      '","firstName":"' +
       loginData.firstName +
-      ',"lastName":' +
+      '","lastName":"' +
       loginData.lastName +
-      '}';
+      '"}';
     body.set('data', dataBody);
     this.httpService
       .postResponse(
         'api/infra/users',
-        dataBody,
+        this.platform.is('mobile') ? { data: dataBody } : body.toString(),
         this.platform.is('mobile')
           ? HEADERS_OPTIONS
           : {
               headers: new HttpHeaders().set(
-                'X-Timezone-Offset',
-                this.getTimezoneOffset()
+                'Content-Type',
+                'application/x-www-form-urlencoded;charset=UTF-8'
               ),
             }
       )
@@ -120,6 +123,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('login');
+    localStorage.removeItem('user');
     this.router.navigate(['login']);
   }
 }
