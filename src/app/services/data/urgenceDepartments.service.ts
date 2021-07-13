@@ -6,8 +6,9 @@ import { AuthService } from '../auth/auth.service';
 import { HttpService } from '../http-service.service';
 import { HEADERS_OPTIONS } from '../staticVars';
 
-let diag: any = undefined;
-
+let departments: any = undefined;
+let nomDepartment: string;
+let typeDepartment: any;
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +20,7 @@ export class UrgenceDepartmentsService {
     private auth: AuthService,
     private httpService: HttpService
   ) {
-    this.observableUrgenceDepartments = new BehaviorSubject<any>(diag);
+    this.observableUrgenceDepartments = new BehaviorSubject<any>(departments);
   }
 
   getUrgenceDepartments() {
@@ -41,7 +42,7 @@ export class UrgenceDepartmentsService {
       )
       .subscribe(
         (res: any) => {
-          diag = JSON.parse(JSON.stringify(res));
+          departments = JSON.parse(JSON.stringify(res));
           this.eventChange();
         },
         (err) => {
@@ -53,6 +54,58 @@ export class UrgenceDepartmentsService {
   }
 
   eventChange() {
-    this.observableUrgenceDepartments.next(diag);
+    this.observableUrgenceDepartments.next(this.filterDepartments());
+  }
+
+  clearFilter() {
+    nomDepartment = '';
+    typeDepartment = '';
+    this.eventChange();
+  }
+
+  setFilter(type: string, value: any) {
+    switch (type) {
+      case 'nomDepartment': {
+        nomDepartment = value;
+        break;
+      }
+      case 'typeDepartment': {
+        typeDepartment = value;
+        break;
+      }
+    }
+    this.eventChange();
+  }
+
+  filterDepartments() {
+    let zonesFilterd = [];
+    if (departments !== undefined && departments !== null) {
+      zonesFilterd = JSON.parse(JSON.stringify(departments));
+    }
+    if (this.checkFilterValue(nomDepartment)) {
+      let filteredZoneByFrigoName = zonesFilterd.filter((department) =>
+        department.name.toLowerCase().includes(nomDepartment)
+      );
+      zonesFilterd = JSON.parse(JSON.stringify(filteredZoneByFrigoName));
+    }
+
+    if (this.checkFilterValue(typeDepartment)) {
+      if (typeDepartment.length > 0) {
+        let filteredZoneByFrigoType = zonesFilterd.filter((department) =>
+          typeDepartment.includes(department.role)
+        );
+
+        zonesFilterd = JSON.parse(JSON.stringify(filteredZoneByFrigoType));
+      }
+    }
+
+    return zonesFilterd;
+  }
+
+  checkFilterValue(value) {
+    if (value !== undefined && value !== null && value !== '') {
+      return true;
+    }
+    return false;
   }
 }

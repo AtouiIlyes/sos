@@ -1,10 +1,9 @@
 {
   "appId": "org.sos",
-  "appName": "SOS",
+  "appName": "sos",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
-  "windowsAndroidStudioPath": "/snap/android-studio/97/android-studio/bin/studio.sh",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0,

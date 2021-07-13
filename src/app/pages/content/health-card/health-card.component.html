@@ -96,15 +96,23 @@
           </button>
         </div>
         <div id="form-container">
-          <dx-form id="form" [formData]="healthCard" [colCount]="2">
+          <dx-form id="form2" [formData]="healthCard" [colCount]="2">
             <dxi-item itemType="group" caption="Allergie sévère">
               <dxi-item
                 dataField="anaphylaxis"
                 [label]="{ text: 'Anaphylaxie' }"
-                itemTemplate="customDevice"
               >
-              <div *dxTemplate="let d of 'customDevice'">
-                <dx-radio-group [items]="items" [value]="d.anaphylaxis" layout="horizontal">
+                <div *dxTemplate>
+                  <dx-radio-group
+                    [items]="items"
+                    [(value)]="
+                      healthCard.anaphylaxis === 1 ||
+                      healthCard.anaphylaxis === 'oui'
+                        ? items[0]
+                        : items[1]
+                    "
+                    layout="horizontal"
+                  >
                   </dx-radio-group>
                 </div>
               </dxi-item>
@@ -115,7 +123,12 @@
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
-                    [value]="items[0]"
+                    [(value)]="
+                      healthCard.epipen === 1 ||
+                      healthCard.epipen === 'oui'
+                        ? items[0]
+                        : items[1]
+                    "
                     layout="horizontal"
                   >
                   </dx-radio-group>
@@ -123,19 +136,24 @@
               </dxi-item>
             </dxi-item>
             <dxi-item itemType="group" caption="Général">
-              <dxi-item
-                dataField="blood_group"
-                [label]="{ text: 'Groupe sanguain' }"
-              >
+              <dxi-item dataField="blood_group" [label]="{ text: 'Groupe sanguain' }">
                 <div *dxTemplate>
-                  <dx-select-box [dataSource]="bloodType"></dx-select-box>
+                  <dx-select-box
+                    [dataSource]="bloodType"
+                    [(value)]="healthCard.blood_group"
+                  ></dx-select-box>
                 </div>
               </dxi-item>
               <dxi-item dataField="diabetes" [label]="{ text: 'Diabéte' }">
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
-                    [value]="items[0]"
+                    [(value)]="
+                      healthCard.diabetes === 1 ||
+                      healthCard.diabetes === 'oui'
+                        ? items[0]
+                        : items[1]
+                    "
                     layout="horizontal"
                   >
                   </dx-radio-group>
@@ -149,7 +167,12 @@
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
-                    [value]="items[0]"
+                    [(value)]="
+                      healthCard.organ_donor === 1 ||
+                      healthCard.organ_donor === 'oui'
+                        ? items[0]
+                        : items[1]
+                    "
                     layout="horizontal"
                   >
                   </dx-radio-group>
@@ -162,16 +185,20 @@
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
-                    [value]="items[0]"
+                    [(value)]="
+                      healthCard.family_doctor === 1 ||
+                      healthCard.family_doctor === 'oui'
+                        ? items[0]
+                        : items[1]
+                    "
                     layout="horizontal"
                   >
                   </dx-radio-group>
                 </div>
               </dxi-item>
-              <dxi-item
-                dataField="doctor"
-                [label]="{ text: 'Si oui ' }"
-              ></dxi-item>
+              <dxi-item dataField="doctor" [label]="{ text: 'Si oui ' }">
+                <dx-text-box [(value)]="healthCard.doctor"></dx-text-box>
+              </dxi-item>
             </dxi-item>
           </dx-form>
         </div>

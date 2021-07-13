@@ -37,6 +37,7 @@ export class FrigoFilterComponent implements OnInit, AfterViewInit, OnDestroy {
   zone = "";
   typeEspace = "";
   departmentTypes = [
+    { id: 'all', value: 'Tous' },
     { id: 'police', value: 'Police' },
     { id: 'fire_station', value: 'Pompiers' },
     { id: 'ambulence', value: 'Ambulance' },
@@ -45,6 +46,7 @@ export class FrigoFilterComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     @Inject(DOCUMENT) public document,
     private zoneService: ZoneService,
+    private urgenceDepartment: UrgenceDepartmentsService,
     public utils: UtilsService
   ) {
 
@@ -78,47 +80,21 @@ export class FrigoFilterComponent implements OnInit, AfterViewInit, OnDestroy {
 
   zoneFrigoSelected(zoneEspace: any) {
     if (zoneEspace.value !== null) {
-      this.zoneService.setFilter("idZone", zoneEspace.value);
+      this.urgenceDepartment.setFilter("typeDepartment", zoneEspace.value);
     } else {
-      this.zoneService.setFilter("idZone", []);
+      this.urgenceDepartment.setFilter("typeDepartment", []);
     }
   }
 
   nomFrigoChanged(nomFrigo: any) {
     if (nomFrigo.value !== null) {
-      this.zoneService.setFilter("nomFrigo", nomFrigo.value.toLowerCase());
+      this.urgenceDepartment.setFilter("nomDepartment", nomFrigo.value.toLowerCase());
     } else {
-      this.zoneService.setFilter("nomFrigo", "");
+      this.urgenceDepartment.setFilter("nomDepartment", "");
     }
   }
 
-  clientChanged(client: any) {
-    if (client.value !== null) {
-      this.zoneService.setFilter("client", client.value.toLowerCase());
-    } else {
-      this.zoneService.setFilter("client", "");
-    }
-  }
 
-  typeFrigoSelected(typeFrigo: any) {
-    if (typeFrigo.value !== null) {
-      this.zoneService.setFilter("typeFrigo", typeFrigo.value);
-    } else {
-      this.zoneService.setFilter("typeFrigo", []);
-    }
-  }
-
-  categoryFrigoSelected(categoryFrigo: any) {
-    if (categoryFrigo.value !== null) {
-      this.zoneService.setFilter("categoryFrigo", categoryFrigo.value);
-    } else {
-      this.zoneService.setFilter("categoryFrigo", []);
-    }
-  }
-
-  nomDeviceChanged(nomDevice: any) {
-    this.zoneService.setFilter("nomDevice", nomDevice.value.toLowerCase());
-  }
 
   clearFilter() {
     this.nomEspace = "";

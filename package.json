@@ -4,11 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng serve  --proxy-config proxy.config.json --host 0.0.0.0 --port 4200",
-    "build": "ng build",
+    "build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng  build --prod --buildOptimizer --optimization",
+    "buildAndroid": "npm run build && ionic cap sync --no-build --prod",
+    "debugMobile": "ionic cap run android -l --external",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "sideEffects": false,
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.11",

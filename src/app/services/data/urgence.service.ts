@@ -28,11 +28,11 @@ export class UrgenceService {
     const data =
       '{"type":1,"typeUrgence":"' +
       help.typeUrgence +
-      '",lat:' +
+      '",lat:"' +
       help.lat +
-      ',lon:' +
+      '",lon:"' +
       help.lon +
-      '}';
+      '"}';
     body.set('data', data);
     return this.httpService
       .postResponse(

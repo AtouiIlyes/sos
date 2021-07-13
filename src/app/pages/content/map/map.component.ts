@@ -85,48 +85,51 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.activeLayerGroup = L.featureGroup([]);
     this.layerGroups.push(this.activeLayerGroup);
     this.departmentSubscription =
-      this.urgenceDepartmentsService.observableUrgenceDepartments.subscribe((items: any) => {
-        if (items !== undefined) {
-          this.urgenceDepartments = items;
-          if (this.myMap !== undefined) {
-            this.layerGroups = [];
-            this.activeLayerGroup.clearLayers();
-            this.initMarkerCluster();
-            this.updateMapCluster(this.urgenceDepartments);
-            if (this.markersCluster !== undefined) {
-              const bounds = this.markersCluster.getBounds();
-              if (!this.utilsService.isEmptyObject(bounds)) {
-                this.myMap.fitBounds(bounds);
+      this.urgenceDepartmentsService.observableUrgenceDepartments.subscribe(
+        (items: any) => {
+          if (items !== undefined) {
+            this.urgenceDepartments = items;
+            if (this.myMap !== undefined) {
+              let that = this;
+              this.myMap.eachLayer(function (layer) {
+                if(!layer._url){
+                  that.myMap.removeLayer(layer);
+                }
+              });
+              this.layerGroups = [];
+              this.activeLayerGroup.clearLayers();
+              this.initMarkerCluster();
+              this.updateMapCluster(this.urgenceDepartments);
+              if (this.markersCluster !== undefined) {
+                const bounds = this.markersCluster.getBounds();
+                if (!this.utilsService.isEmptyObject(bounds)) {
+                  this.myMap.fitBounds(bounds);
+                }
               }
-            }
-            this.myMap.addLayer(this.markersCluster);
-            let that = this;
-            this.myMap.locate({
-              setView: true,
-              maxZoom: 16,
-              watch: true,
-              enableHighAccuracy: true,
-            });
-            this.myMap.on('locationfound', (e) => {
-              let radius = e.accuracy;
-              L.marker(this.randomizeLocation(e.latitude, e.longitude), {
-                icon: this.iconMe,
-              })
-                .addTo(this.myMap)
-                .bindPopup(
-                  'Vous etes ici '
-                )
-                .openPopup();
+              this.myMap.addLayer(this.markersCluster);
+              this.myMap.locate({
+                setView: true,
+                maxZoom: 16,
+                watch: true,
+                enableHighAccuracy: true,
+              });
+              this.myMap.on('locationfound', (e) => {
+                let radius = e.accuracy;
+                L.marker(this.randomizeLocation(e.latitude, e.longitude), {
+                  icon: this.iconMe,
+                })
+                  .addTo(this.myMap)
+                  .bindPopup('Vous etes ici ')
+                  .openPopup();
 
-              L.circle(e.latlng, 10 / 2).addTo(this.myMap);
-            });
-            this.myMap.on('locationerror', (e) => {
-              alert(e.message);
-            });
-            this.isLoading = false;
+                L.circle(e.latlng, 10 / 2).addTo(this.myMap);
+              });
+              this.myMap.on('locationerror', (e) => {});
+              this.isLoading = false;
+            }
           }
         }
-      });
+      );
 
     // this.filteredZoneSubscription = this.zoneService.observableFilteredZone.subscribe(
     //   (items: any) => {

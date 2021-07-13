@@ -39,24 +39,7 @@
         ></dx-text-box>
       </div>
 
-      <div class="dx-field" *ngIf="showEspaceTypeFilter">
-        <dx-text-box
-          [(value)]="client"
-          placeholder="Client"
-          [showClearButton]="true"
-          valueChangeEvent="keyup"
-          (onValueChanged)="clientChanged($event)"
-        ></dx-text-box>
-      </div>
-      <div class="dx-field" *ngIf="showEspaceTypeFilter">
-        <dx-text-box
-          [(value)]="nomDevice"
-          placeholder="Série Boîtier"
-          [showClearButton]="true"
-          valueChangeEvent="keyup"
-          (onValueChanged)="nomDeviceChanged($event)"
-        ></dx-text-box>
-      </div>
+
 
       <dx-button
         text="Réinitialiser"
